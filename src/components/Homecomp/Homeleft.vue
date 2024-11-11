@@ -19,6 +19,11 @@ const login = () => {
         path: '/login'
     })
 }
+const register = () => {
+    router.push({
+        path:'/register'
+    })
+}
 </script>
 <template>
     <div class="HomeLeft">
@@ -40,7 +45,10 @@ const login = () => {
                 @click="login"
                 >登录</el-button>
                 <el-button
-                size="large">注册</el-button>
+                size="large"
+                auto-insert-space
+                @click="register"
+                >注册</el-button>
             </div>
         </div>
     </div>

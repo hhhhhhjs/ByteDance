@@ -5,6 +5,10 @@ html,body{
   height: 100%;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root{
+  --dark-side:#171717;
+  --dark-content:#212121;
+  --light-side:#f3f4f6;
+  --light-content:#ffffff;
+  --dark-icon:#b4b4b4;
+}

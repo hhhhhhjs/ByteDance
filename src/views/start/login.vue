@@ -3,27 +3,37 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { antiShake } from '@/api/login';
 
+
 const account = ref<any>('');
 const password = ref<number | string>('');
 const router = useRouter();
 
-
+// 这里模拟用户为 小黄
+const uerId = ref<string>('7di3d02ld')
 
 // 播放音频函数
 const audioplay = () => {
   const audio = new Audio('../../public/audio/哇，真的是你啊.mp3');
-  audio.play();
+  return new Promise((resolve,reject) => {
+    resolve(audio.play())
+  })
 }
 
 // 登录函数
-const getLog = () => {
+const getLog = async() => {
     if(account.value === '' || password.value === ''){
         ElMessage({
             message: '账号或密码不能为空',
             type: 'warning'
         });
     } else {
-         audioplay();
+        await audioplay();
+         router.push({
+          path:'/user',
+          query:{
+            id: uerId.value
+          }
+         })
     }
 }
 
@@ -41,38 +51,49 @@ const resetPassword = () => {
 <template>
 <div class="outer">
   <div class="navie">
-    <img src="../../../public/page/kun.jpg" alt="欢迎" />
+    <div>
+      <img src="../../../public/page/kun.jpg" alt="欢迎" />
+    </div>
     <p class="welcome-text">欢迎回来 🙌</p>
   </div>
   <div class="loginBody">
-    <div style="margin-top: 30px;">
-      <div style="display: flex">
+    <div >
+      <div style="display: flex; align-items:center">
         <p class="pTwo">账号</p>
-        <el-input
+           <!-- <el-input
           placeholder="请输入账号"
           v-model="account"
           size="default"
           clearable
-          style="border-color: #4a4a4a"
           class="input"
-        ></el-input>
+        ></el-input> -->
+        <el-input
+        placeholder="请输入账号"
+        v-model="account"
+        clearable
+        size="default"
+        class="input"
+        />
         <span class="require">*</span>
       </div>
-      <div style="display: flex; margin-top: 20px">
+      <div style="display: flex; align-items:center;">
         <p class="pTwo">密码</p>
-        <el-input 
+          <el-input 
           placeholder="请输入密码" 
           size="default" 
           clearable
           v-model="password"
           show-password
           class="input"
-        ></el-input>
+        />
         <span class="require">*</span>
       </div>
     </div>
     <p class="forgetPassword" @click="resetPassword">忘记密码?</p>
-    <el-button type="primary" class="loginBtn" color="#4a4a4a" @click="debouncedGetLog">登录</el-button>
+    <el-button type="primary" 
+    class="loginBtn" 
+    color="#4a4a4a" 
+    @click="debouncedGetLog">登录</el-button>
   </div>
 </div>
 </template>
@@ -102,13 +123,11 @@ img {
   font-size: 32px;
   font-weight: 900;
   color: #f0f0f0; /* 浅灰色 */
-  margin-top: 50px;
 }
 
 .loginBody {
   font-size: 20px;
   font-weight: 500;
-  margin-top: 100px;
   width: 300px;
   height: 300px;
   margin: 0 auto;
@@ -124,7 +143,7 @@ img {
 
 .loginBtn {
   display: block;
-  margin: 20px auto 0;
+;
   width: 300px;
   background-color: #585858;
   color: #fff;
@@ -137,7 +156,6 @@ img {
   width: 65px;
   font-size: 14px;
   cursor: pointer;
-  margin-top: 20px;
   color: #5e8cb7;
   transition: color 0.3s ease;
 }
