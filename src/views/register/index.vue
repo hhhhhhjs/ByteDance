@@ -83,18 +83,16 @@ const debouncedIsPassword = antiShake(isPassword, 500);
     <div class="linetop"></div>
     <div class="container">
       <div style="display: flex; flex-direction: column; width: 100%">
-        <div style="display: flex; margin-bottom: 20px">
+        <div style="display: flex; align-items:center; margin-bottom: 20px">
           <strong><p class="pTwo">邮箱</p></strong>
-          <el-input
-            placeholder="请输入邮箱地址"
-            v-model="Mail"
-            size="default"
+            <el-input
+            placeholder="请输入邮箱"
             clearable
-            style="border-color: #292929"
-          ></el-input>
+            v-model="Mail"
+            />
           <span class="require">*</span>
         </div>
-        <div style="display: flex; margin-bottom: 20px">
+        <div style="display: flex; margin-bottom: 20px; align-items:center">
           <strong><p class="pTwo">验证码</p></strong>
           <el-input
             placeholder="请输入验证码"
@@ -104,7 +102,7 @@ const debouncedIsPassword = antiShake(isPassword, 500);
           ></el-input>
           <span class="require">*</span>
         </div>
-        <div style="display: flex; margin-bottom: 20px">
+        <div style="display: flex; margin-bottom: 20px;align-items:center">
           <strong><p class="pTwo">设置账号</p></strong>
           <el-input
             placeholder="请输入账号"
@@ -115,7 +113,7 @@ const debouncedIsPassword = antiShake(isPassword, 500);
           ></el-input>
           <span class="require">*</span>
         </div>
-        <div style="display: flex; margin-bottom: 20px">
+        <div style="display: flex; margin-bottom: 20px;align-items:center">
           <strong><p class="pTwo">设置密码</p></strong>
           <el-input
             placeholder="请输入密码"
@@ -126,7 +124,7 @@ const debouncedIsPassword = antiShake(isPassword, 500);
           ></el-input>
           <span class="require">*</span>
         </div>
-        <div style="display: flex; margin-bottom: 20px">
+        <div style="display: flex; margin-bottom: 20px;align-items:center">
           <strong><p class="pTwo">再次输入</p></strong>
           <el-input
             placeholder="确保两次输入密码一致"
@@ -219,4 +217,5 @@ const debouncedIsPassword = antiShake(isPassword, 500);
   justify-content: center;
   align-items: center;
 }
+
 </style>
