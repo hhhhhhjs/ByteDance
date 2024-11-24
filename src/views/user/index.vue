@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import Side from '@/components/user/side/side.vue'
 import Content from '@/components/user/content/content.vue'
-import { buttonEmits } from 'element-plus'
 
 
 const colorObj = {
@@ -14,10 +12,12 @@ const colorObj = {
   darkicon:'#b4b4b4',
   lighticon:'#171717',
   darkText:'#e1e1e1',
+  inputDark:'#2f2f2f'
 }
 
 // 侧边栏颜色
 const themeColorSide = ref<string>(colorObj.darkside)
+// 提示气泡颜色
 const themeColorPopp = ref<string>('dark')
 const iconColor = ref<string>(colorObj.darkicon)
 
@@ -39,6 +39,11 @@ const changethemeColor = () => {
   }
 }
 
+
+// 组件挂载时向后端请求数据
+onBeforeMount(() => {
+  console.log(colorObj.darkText)
+})
 </script>
 <template>
   <div class="container">
@@ -48,10 +53,13 @@ const changethemeColor = () => {
     :iconColor="iconColor"
     :textColor="textColor"
     :fill="iconColor"
-    scollbarColor="red"
-    scollbarbackgroundColor="red"
     ></Side>
-    <Content></Content>
+    <Content
+    :NavtextColor="iconColor"
+    :bodytextColor="colorObj.darkText"
+    :inputColor="colorObj.inputDark"
+    :popperStyle="themeColorPopp"
+    ></Content>
   </div>
 </template>
 <style scoped>

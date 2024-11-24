@@ -7,17 +7,22 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Body: typeof import('./src/components/user/content/contentComp2/body.vue')['default']
     Content: typeof import('./src/components/user/content/content.vue')['default']
+    ContentComp: typeof import('./src/components/user/content/contentComp/index.vue')['default']
     ConversionList: typeof import('./src/components/user/side/conversionList.vue')['default']
+    CustomQuestions: typeof import('./src/components/user/content/contentComp2/customQuestions.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIn: typeof import('element-plus/es')['ElIn']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     HighLight: typeof import('./src/components/user/side/highLight.vue')['default']
     Homeleft: typeof import('./src/components/Homecomp/Homeleft.vue')['default']
     HomeleftComp: typeof import('./src/components/HomeleftComp.vue')['default']
     Homeright: typeof import('./src/components/Homecomp/Homeright.vue')['default']
+    Input: typeof import('./src/components/user/content/contentComp2/Input.vue')['default']
     Nav: typeof import('./src/components/Homecomp/nav.vue')['default']
     Options: typeof import('./src/components/user/side/options.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -25,5 +30,6 @@ declare module 'vue' {
     Side: typeof import('./src/components/user/side/side.vue')['default']
     Text: typeof import('./src/components/Homecomp/text.vue')['default']
     Tick: typeof import('./src/components/Homecomp/tick.vue')['default']
+    Welcome: typeof import('./src/components/user/content/contentComp/welcome.vue')['default']
   }
 }

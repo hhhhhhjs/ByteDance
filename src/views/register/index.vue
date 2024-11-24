@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
-import { antiShake } from "@/api/login";
+import { antiShake } from "@/api/login/login";
 import Tickcom from "@/components/Homecomp/tick.vue";
 import router from "@/router/router";
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import { antiShake } from '@/api/login';
+import { antiShake } from '@/api/login/login';
 
 
 const account = ref<any>('');
@@ -29,10 +29,7 @@ const getLog = async() => {
     } else {
         await audioplay();
          router.push({
-          path:'/user',
-          query:{
-            id: uerId.value
-          }
+          path:'/user'
          })
     }
 }

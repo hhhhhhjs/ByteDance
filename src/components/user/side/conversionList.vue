@@ -9,8 +9,6 @@ interface Props {
   textColor: string;
   fill: string;
   popperStyle: string;
-  scollbarColor: string;
-  scollbarbackgroundColor: string;
 }
 
 const props = defineProps<Props>();
@@ -53,7 +51,7 @@ const arrList = ref<Array<object>>([
     child: [
       { name: "马睿没车怎么办", dialogID: 10 },
       { name: "马睿没房怎么办", dialogID: 11 },
-      { name: "但是马睿有一个大鸡巴", dialogID: 12 },
+      { name: "小明的问答请求", dialogID: 12 },
       { name: "计算机组成原理课设怎么通过", dialogID: 13 },
       { name: "计算机组成原理换老师", dialogID: 14 },
     ],
@@ -61,8 +59,8 @@ const arrList = ref<Array<object>>([
   {
     title: "更早以前",
     child: [
-      { name: "马睿没车怎么办", dialogID: 10 },
-      { name: "马睿没房怎么办", dialogID: 11 },
+      { name: "小明没车怎么办", dialogID: 10 },
+      { name: "小明没房怎么办", dialogID: 11 },
     ],
   },
 ]);
@@ -99,17 +97,15 @@ const moveoptions = (): void => {
         <template #reference>
           <editSvg
             :fill="props.fill"
-            :style="{ marginLeft: '20', width: '20', height: '20' }"
+            :style="{ marginLeft: '20', width: '20', height: '20', cursor: 'pointer' }"
           ></editSvg>
         </template>
       </el-popover>
     </div>
-    <div style="overflow: auto; margin-top: 10px">
+    <el-scrollbar class="scrollbar">
       <div v-for="item in arrList" :key="item">
         <h5>{{ item.title }}</h5>
-        <div 
-        class="item" 
-        v-for="value in item.child" :key="value.name">
+        <div class="item" v-for="value in item.child" :key="value.name">
           <div
             class="content"
             @mouseenter="enteroptions(value)"
@@ -123,7 +119,7 @@ const moveoptions = (): void => {
           </div>
         </div>
       </div>
-    </div>
+    </el-scrollbar>
   </div>
 </template>
 <style scoped>
@@ -151,13 +147,21 @@ const moveoptions = (): void => {
   padding: 8px;
   border-radius: 4px;
   align-content: center;
-  transition: background-color 0.3s;
+  cursor: pointer;
+  transition: background-color 0.3s color 2s;
 }
 
 .item:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+.item.active {
+  color: red;
+}
+.scrollbar {
+  overflow: auto;
+  margin-top: 10px;
+}
 .content {
   display: flex;
   justify-content: space-between;
