@@ -14,7 +14,9 @@ const props = defineProps<Props>();
 </script>
 <template>
   <div class="container">
-    <contentNav class="nav" :NavtextColor="props.NavtextColor"></contentNav>
+    <contentNav 
+    class="nav" 
+    :NavtextColor="props.NavtextColor"></contentNav>
     <div class="body">
       <Body
         class="content"

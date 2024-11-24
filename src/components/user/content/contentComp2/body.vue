@@ -15,7 +15,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const str = ref<string>("有什么可以帮忙的?");
+const str = ref<string>("");
 const delayTime = ref<number>(30);
 
 // 存储用户输入
@@ -31,6 +31,8 @@ const getData = (value:string) => {
 const isFooter = ref<boolean>(false)
 
 onMounted(() => {
+  str.value = '有什么可以帮忙的?';
+  console.log(str.value)
   printing(str.value, delayTime.value);
   setTimeout(() => {
     isFooter.value = true

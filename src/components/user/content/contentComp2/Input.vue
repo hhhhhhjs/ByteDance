@@ -135,7 +135,7 @@ onMounted(() => {
 <style scoped>
 .container {
   margin-top: 20px;
-  width: 750px;
+  width: 760px;
   height: auto;
   border-radius: 25px;
 }
