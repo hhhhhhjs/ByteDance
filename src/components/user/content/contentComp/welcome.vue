@@ -17,7 +17,9 @@ const props = defineProps<Props>();
   <div class="container">
     <contentNav 
     class="nav" 
-    :NavtextColor="props.NavtextColor"></contentNav>
+    :NavtextColor="props.NavtextColor"
+    :backgroundColor="props.inputColor"
+    :persontextColor="props.bodytextColor"></contentNav>
     <div class="body">
       <Body
         class="content"

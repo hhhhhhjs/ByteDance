@@ -14,11 +14,14 @@ interface Props {
 
 const props = defineProps<Props>();
 
-//
 </script>
 <template>
   <div class="indexcontainer">
-    <contentNav :NavtextColor="props.NavtextColor"></contentNav>
+    <contentNav 
+    :NavtextColor="props.NavtextColor"
+    :backgroundColor="props.inputColor"
+    :persontextColor="props.bodytextColor"
+    ></contentNav>
     <div 
     class="indexBody"
     :style="{

@@ -45,16 +45,29 @@ const changeColor = () => {
   }
 };
 
-// 触发emit函数
-const sendmessage = () => {
+const isenterSend = ref<boolean>(false)
+
+
+
+// 输入时样式动态调整
+const getmessage = () => {
   if(textarea.value){
     adjustInputHeight(textarea.value, 200);
   }
-  console.log('我是谁',textarea.value?.offsetHeight)
-  console.log('滚动条',textarea.value?.scrollHeight)
   changeColor();
-  emit("send", inputText.value);
 };
+
+// 发送函数
+const sendmessage = () => {
+  if(inputText.value){
+    emit("send", inputText.value);
+    // 这里代表后端响应，需要在后端接收到之后再清除
+    console.log('发送成功')
+    inputText.value = ''
+    changeColor()
+  }
+}
+
 
 // 检测按键
 const iskey = (e: KeyboardEvent) => {
@@ -63,8 +76,7 @@ const iskey = (e: KeyboardEvent) => {
   }
   else if(e.key === 'Enter'){
     e.preventDefault()
-    inputText.value = ''
-    changeColor()
+    sendmessage()
     nextTick(() => {
       if(textarea.value){
         adjustInputHeight(textarea.value, 200);
@@ -104,7 +116,7 @@ onMounted(() => {
       ref="textarea"
       v-focus
       v-model="inputText"
-      @input="sendmessage"
+      @input="getmessage"
       @keydown="iskey"
       :style="{
         backgroundColor: props.inputColor,
@@ -134,7 +146,12 @@ onMounted(() => {
           </div>
         </template>
       </el-popover>
-      <sendSvg :fill="sendColor" class="send"></sendSvg>
+          <sendSvg 
+          :fill="isenterSend? 'red' : sendColor" 
+          class="send"
+          ref="sendDom"
+          @click="sendmessage"
+          ></sendSvg>
     </div>
   </div>
 </template>

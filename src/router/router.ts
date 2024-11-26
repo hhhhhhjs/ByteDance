@@ -3,7 +3,7 @@ import HomeComp from '../views/start/Hello.vue'
 import LoginComp from '../views/start/Login.vue'
 import RestPas from '../views/start/resetpassword.vue'
 import register from '@/views/register/index.vue'
-
+import personSettings from '@/views/personInfoSetting/index.vue'
 
 
 const routes = [
@@ -27,6 +27,10 @@ const routes = [
                 path:':dialogId',
                 component:()=>import('@/components/user/content/contentComp/index.vue')
             },
+            {
+                path:'settings',
+                component: personSettings
+            }
         ]
     },
 ]

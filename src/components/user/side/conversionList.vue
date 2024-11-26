@@ -74,7 +74,6 @@ const dialogId = ref<number | null>(null);
 
 const enteroptions = (value: childObj): void => {
   dialogId.value = value.dialogID;
-  console.log(dialogId.value);
 };
 // 消失
 const moveoptions = (): void => {

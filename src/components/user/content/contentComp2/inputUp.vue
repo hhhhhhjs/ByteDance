@@ -49,14 +49,24 @@ const changeColor = () => {
   }
 };
 
-// 触发emit函数
-const sendmessage = () => {
+// 输入时样式动态调整
+const getmessage = () => {
   if(textarea.value && textareaParent.value){
     adjustInputHeightUp(textarea.value, textareaParent.value, 200);
   }
   changeColor();
-  emit("send", inputText.value);
 };
+
+// 发送函数
+const sendmessage = () => {
+  if(inputText.value){
+    emit("send", inputText.value);
+    // 这里代表后端响应，需要在后端接收到之后再清除
+    console.log('发送成功')
+    inputText.value = ''
+    changeColor()
+  }
+}
 
 // 检测按键
 const iskey = (e: KeyboardEvent) => {
@@ -65,8 +75,7 @@ const iskey = (e: KeyboardEvent) => {
   }
   else if(e.key === 'Enter'){
     e.preventDefault()
-    inputText.value = ''
-    changeColor()
+    sendmessage()
     nextTick(() => {
       if(textarea.value && textareaParent.value){
         adjustInputHeightUp(textarea.value, textareaParent.value, 200);
@@ -74,6 +83,7 @@ const iskey = (e: KeyboardEvent) => {
     })
   }
 };
+
 
 
 // 监听通过 mitt 传递过来的选项值
@@ -107,7 +117,7 @@ onMounted(() => {
       ref="textarea"
       v-focus
       v-model="inputText"
-      @input="sendmessage"
+      @input="getmessage"
       @keydown="iskey"
       :style="{
         backgroundColor: props.inputColor,
@@ -136,7 +146,10 @@ onMounted(() => {
           </div>
         </template>
       </el-popover>
-      <sendSvg :fill="sendColor" class="send"></sendSvg>
+      <sendSvg 
+      :fill="sendColor" 
+      class="send"
+      @click="sendmessage"></sendSvg>
     </div>
   </div>
 </template>

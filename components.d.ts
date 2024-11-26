@@ -27,6 +27,7 @@ declare module 'vue' {
     InputUp: typeof import('./src/components/user/content/contentComp2/inputUp.vue')['default']
     Nav: typeof import('./src/components/Homecomp/nav.vue')['default']
     Options: typeof import('./src/components/user/side/options.vue')['default']
+    PersonInfo: typeof import('./src/components/user/content/personInfo/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Side: typeof import('./src/components/user/side/side.vue')['default']
