@@ -9,7 +9,7 @@ const props = defineProps<Props>();
 </script>
 <template>
   <div class="container">
-    <p :style="{ color: props.NavtextColor }">Chat-Gpt</p>
+    <p :style="{ color: props.NavtextColor }">ChatGpt</p>
     <div class="avatar"></div>
   </div>
 </template>

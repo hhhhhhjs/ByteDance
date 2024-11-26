@@ -6,7 +6,7 @@ import {
   onMounted,
   nextTick
 } from "vue";
-import { vFocus, adjustInputHeight } from "@/api/usercontent/input";
+import { vFocus, adjustInputHeightUp } from "@/api/usercontent/input";
 import sendSvg from "@/assets/content/send.vue";
 import uploadSvg from "@/assets/content/upload.vue";
 import { mittEmitter, mitt_obj } from "./mitt";
@@ -30,6 +30,10 @@ const emit = defineEmits<{
 
 // 获取 textarea dom
 const textarea = ref<HTMLTextAreaElement | null>(null);
+
+// 获取 textarea 父级 div 的 dom
+const textareaParent = ref<HTMLDivElement | null>(null);
+
 // 存储输入文本
 const inputText = ref<string>("");
 
@@ -47,11 +51,9 @@ const changeColor = () => {
 
 // 触发emit函数
 const sendmessage = () => {
-  if(textarea.value){
-    adjustInputHeight(textarea.value, 200);
+  if(textarea.value && textareaParent.value){
+    adjustInputHeightUp(textarea.value, textareaParent.value, 200);
   }
-  console.log('我是谁',textarea.value?.offsetHeight)
-  console.log('滚动条',textarea.value?.scrollHeight)
   changeColor();
   emit("send", inputText.value);
 };
@@ -66,8 +68,8 @@ const iskey = (e: KeyboardEvent) => {
     inputText.value = ''
     changeColor()
     nextTick(() => {
-      if(textarea.value){
-        adjustInputHeight(textarea.value, 200);
+      if(textarea.value && textareaParent.value){
+        adjustInputHeightUp(textarea.value, textareaParent.value, 200);
       }
     })
   }
@@ -87,13 +89,14 @@ const iskey = (e: KeyboardEvent) => {
 
 // 在组件挂载时也需要执行调整高度函数，不然动态计算高度只会在input时才触发，会出现滚动条
 onMounted(() => {
-  if(textarea.value){
-    adjustInputHeight(textarea.value, 200);
+  if(textarea.value && textareaParent.value){
+    adjustInputHeightUp(textarea.value, textareaParent.value, 200);
   }
 });
 </script>
 <template>
   <div class="container" 
+  ref="textareaParent"
   :style="{ 
     backgroundColor: props.inputColor,
     '--scrollbar-color--': props.inputColor,
@@ -113,7 +116,6 @@ onMounted(() => {
       name="KunKun-Gpt"
       cols="1"
       rows="1"
-      
       placeholder="给“KunKun-Gpt”发送消息"
     ></textarea>
     <div class="footer">
@@ -140,7 +142,6 @@ onMounted(() => {
 </template>
 <style scoped>
 .container {
-  margin-top: 20px;
   width: 760px;
   height: auto;
   border-radius: 25px;
@@ -157,6 +158,7 @@ textarea {
   outline: none;
   font-family: "ui-sans-serif,-apple-system,system-ui,Segoe UI,Helvetica,Apple Color Emoji,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol";
   font-size: 16px;
+  transform-origin: bottom; /* 从底部扩展 */
 }
 
 
@@ -165,6 +167,9 @@ textarea::-webkit-scrollbar {
   background: var(--scrollbar-color--);
 }
 
+textarea::-webkit-scrollbar:hover {
+  cursor: pointer;
+}
 
 textarea::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-color--);

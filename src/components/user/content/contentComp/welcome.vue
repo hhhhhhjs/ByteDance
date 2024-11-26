@@ -8,6 +8,7 @@ interface Props {
   bodytextColor: string;
   inputColor: string;
   popperStyle: string;
+  scrollbarthumbColor: string;
 }
 
 const props = defineProps<Props>();
@@ -23,6 +24,7 @@ const props = defineProps<Props>();
         :bodytextColor="props.bodytextColor"
         :inputColor="props.inputColor"
         :popperStyle="props.popperStyle"
+        :scrollbarthumbColor="props.scrollbarthumbColor"
       ></Body>
     </div>
   </div>
@@ -34,9 +36,9 @@ const props = defineProps<Props>();
   height: 100%;
 }
 .nav {
+  padding-top: 15px;
   width: 100%;
   height: 5%;
-  margin-top: 15px;
   margin: 0 auto;
 }
 .body {

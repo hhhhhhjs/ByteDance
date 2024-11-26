@@ -11,6 +11,7 @@ interface Props {
   // 输入框背景颜色
   inputColor: string;
   popperStyle: string;
+  scrollbarthumbColor:string
 }
 
 const props = defineProps<Props>();
@@ -24,7 +25,6 @@ const textarea = ref<string>("");
 // 拿到用户输入
 const getData = (value:string) => {
   textarea.value = value
-  console.log(textarea.value)
 }
 
 // 控制 footer 出现
@@ -48,7 +48,7 @@ onMounted(() => {
         :inputColor="props.inputColor"
         :inputTextColor="props.bodytextColor"
         :popperStyle="props.popperStyle"
-        :scrollbarColor="props.inputColor"
+        :scrollbarthumbColor="props.scrollbarthumbColor"
         @send="getData"
         >
       </Input>

@@ -16,8 +16,8 @@ const props = defineProps<Props>();
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     p-id="2444"
-    width="30"
-    height="30"
+    width="25"
+    height="25"
     :fill="props.fill"
   >
     <path

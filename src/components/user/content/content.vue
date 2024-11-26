@@ -6,6 +6,7 @@ interface Props {
     bodytextColor:string;
     inputColor:string;
     popperStyle:string;
+    scrollbarthumbColor:string;
 }
 
 const props = defineProps<Props>()
@@ -17,6 +18,7 @@ const props = defineProps<Props>()
         :bodytextColor="props.bodytextColor"
         :inputColor="props.inputColor"
         :popperStyle="props.popperStyle"
+        :scrollbarthumbColor="props.scrollbarthumbColor"
         ></router-view>
     </div>
 </template>
@@ -26,6 +28,7 @@ const props = defineProps<Props>()
     background-color: #212121;
     display: flex;
     flex-direction: column;
+    
 }
 
 .text{

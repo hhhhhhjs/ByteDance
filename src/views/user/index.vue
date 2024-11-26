@@ -12,7 +12,9 @@ const colorObj = {
   darkicon:'#b4b4b4',
   lighticon:'#171717',
   darkText:'#e1e1e1',
-  inputDark:'#2f2f2f'
+  inputDark:'#2f2f2f',
+  // 滚动条轨道颜色
+  scrollbarthumbColor:'#424242'
 }
 
 // 侧边栏颜色
@@ -59,6 +61,7 @@ onBeforeMount(() => {
     :bodytextColor="colorObj.darkText"
     :inputColor="colorObj.inputDark"
     :popperStyle="themeColorPopp"
+    :scrollbarthumbColor="colorObj.scrollbarthumbColor"
     ></Content>
   </div>
 </template>

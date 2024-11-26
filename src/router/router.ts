@@ -1,17 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeComp from '../views/start/Hello.vue'
-import loginComp from '../views/start/Login.vue'
+import LoginComp from '../views/start/Login.vue'
 import RestPas from '../views/start/resetpassword.vue'
 import register from '@/views/register/index.vue'
-import path from "path";
 
 
 
 const routes = [
     {path: '/', component: HomeComp},
-    {path: '/login', component: loginComp},
-    {path: '/auth/resetpassword', component: RestPas},
-    {path: '/auth/register', component:register},
+    {path: '/login', component: LoginComp},
+    {path: '/resetpassword', component: RestPas},
+    {path: '/register', component:register},
     // TODO 用户 id
     {
         path:'/user',
