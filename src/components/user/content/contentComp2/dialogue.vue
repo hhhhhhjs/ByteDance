@@ -18,7 +18,8 @@ const messageArr = ref<obj[]>([]);
 messageArr.value = [
     { user: "你好", robot: "你好,我是智能 ai 助手，请问有什么需要帮助的？" },
     { user: '哈哈', robot: '你看起来很开心，可以跟我分享一下嘛'},
-    { user: '天下最牛逼的it培训公司是哪家?', robot:'镇江英格网络科技有限公司'}
+    { user: '天下最牛逼的it培训公司是哪家?', robot:'镇江英格网络科技有限公司'},
+    { user: '我是马一鸣，你叫什么名字?', robot: '我叫马一鸣'},
 ]
 </script>
 <template>

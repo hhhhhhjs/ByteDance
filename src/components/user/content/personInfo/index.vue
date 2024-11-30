@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import settingSvg from '@/assets/personInfo/personSetting.vue'
 import logout from '@/assets/personInfo/logout.vue'
-import { defineProps, } from 'vue';
+import { defineProps, onMounted} from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/store/store';
 
 interface Props{
     textColor:string;
@@ -35,6 +36,10 @@ const options: optionObj[] = [
         }
     }
 ]
+
+// 创建 store
+const userStore = useUserStore();
+
 </script>
 
 <template>

@@ -11,6 +11,9 @@ dependencies:
   mitt:
     specifier: ^3.0.1
     version: 3.0.1
+  pinia:
+    specifier: ^2.2.6
+    version: 2.2.6(typescript@5.6.3)(vue@3.5.12)
   vue:
     specifier: ^3.5.12
     version: 3.5.12(typescript@5.6.3)
@@ -1022,6 +1025,24 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
     dev: true
+
+  /pinia@2.2.6(typescript@5.6.3)(vue@3.5.12):
+    resolution: {integrity: sha512-vIsR8JkDN5Ga2vAxqOE2cJj4VtsHnzpR1Fz30kClxlh0yCHfec6uoMeM3e/ddqmwFUejK3NlrcQa/shnpyT4hA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.5.11
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.6.4
+      typescript: 5.6.3
+      vue: 3.5.12(typescript@5.6.3)
+      vue-demi: 0.14.10(vue@3.5.12)
+    dev: false
 
   /pkg-types@1.2.1:
     resolution: {integrity: sha512-sQoqa8alT3nHjGuTjuKgOnvjo4cljkufdtLMnO2LBP/wRwuDlo1tkaEdMxCRhyGRPacv/ztlZgDPm2b7FAmEvw==}
