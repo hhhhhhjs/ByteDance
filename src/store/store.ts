@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { encryption } from '@/api/local/jwt'
 
 export const useUserStore = defineStore('user',{
     state:()=>({
@@ -21,9 +22,11 @@ export const useUserStore = defineStore('user',{
     actions: {
         setUsername(name: string) {
             this.name = name
+            encryption({username: name})
         },
         setUserId(id: string) {
             this.id = id
+            encryption({userid: id})
         },
         setAvatar(avatar: string) {
             this.avatar = avatar
