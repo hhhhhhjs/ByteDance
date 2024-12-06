@@ -3,7 +3,8 @@ import HomeComp from '../views/start/Hello.vue'
 import LoginComp from '../views/start/Login.vue'
 import RestPas from '../views/start/resetpassword.vue'
 import register from '@/views/register/index.vue'
-import personSettings from '@/views/personInfoSetting/index.vue'
+import personSettings from '@/views/personInfoSetting/settings.vue'
+import personProfile from '@/views/personInfoSetting/profile.vue'
 
 
 const routes = [
@@ -29,7 +30,12 @@ const routes = [
             },
             {
                 path:'settings',
-                component: personSettings
+                component: personSettings,
+            },
+            // 因为项目较小，加上替换的 router-view 和 settings 是同一个页面，所以并没有使用 子路由
+            {
+                path:'settings/profile',
+                component: personProfile,
             }
         ]
     },

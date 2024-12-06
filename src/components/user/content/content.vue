@@ -19,6 +19,8 @@ const props = defineProps<Props>()
         :inputColor="props.inputColor"
         :popperStyle="props.popperStyle"
         :scrollbarthumbColor="props.scrollbarthumbColor"
+        :textColor="props.bodytextColor"
+        :optionsColor="props.inputColor"
         ></router-view>
     </div>
 </template>

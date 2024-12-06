@@ -15,7 +15,7 @@
         "@/*": ["*"]
       }
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts", "components.d.ts", "shims-vue.d.ts"],
     "exclude": ["node_modules"]
   }
   

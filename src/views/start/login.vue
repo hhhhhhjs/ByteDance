@@ -3,7 +3,6 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { antiShake } from '@/api/login/login';
 
-
 const account = ref<any>('');
 const password = ref<number | string>('');
 const router = useRouter();

@@ -4,7 +4,6 @@ import { ElMessage } from "element-plus";
 import { antiShake } from "@/api/login/login";
 import Tickcom from "@/components/Homecomp/tick.vue";
 import router from "@/router/router";
-import { log } from "console";
 
 const Mail = ref<string>("");
 const verificationCode = ref<string>("");
@@ -142,7 +141,7 @@ const debouncedIsPassword = antiShake(isPassword, 500);
   <el-dialog v-model="centerDialog" title="Tips" width="500" align-center>
     <p style="font-size: 20px">确定重置密码？</p>
     <template #footer>
-      <div class="dialog-footer">
+      <div>
         <el-button @click="centerDialog = false" color="#292929"
           >取消</el-button
         >
@@ -156,7 +155,7 @@ const debouncedIsPassword = antiShake(isPassword, 500);
       <p style="font-size: 20px; margin-left: 5px">重置密码成功！</p>
     </div>
     <template #footer>
-      <div class="dialog-footer">
+      <div>
         <el-button @click="confirmResetSuccess" color="#292929">确定</el-button>
       </div>
     </template>

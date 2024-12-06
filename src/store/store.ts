@@ -2,18 +2,27 @@ import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user',{
     state:()=>({
-        name: '' as string,
+        name: '喝醉的威士忌' as string,
         id: '' as string,
         avatar: '' as string,
+        kunkunId: '22222' as string,
     }),
     getters: {
         getAvatar: (state) => {
             return state.avatar
         },
+        getName: (state) => {
+            return state.name
+        },
+        getkunkunId: (state) => {
+            return state.kunkunId
+        }
     },
     actions: {
-        setUser(name: string, id: string) {
+        setUsername(name: string) {
             this.name = name
+        },
+        setUserId(id: string) {
             this.id = id
         },
         setAvatar(avatar: string) {
