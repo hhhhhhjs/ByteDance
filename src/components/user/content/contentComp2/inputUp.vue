@@ -1,3 +1,4 @@
+<!-- 输入框组件 -->
 <script setup lang="ts">
 import {
   defineProps,
@@ -22,10 +23,14 @@ interface Props {
   // 滚动条轨道颜色
   scrollbarthumbColor: string;
 }
-
 const props = defineProps<Props>();
+
+const isclick = () => {
+  console.log("点击了")
+}
 const emit = defineEmits<{
   (e: "send", inputText: string): void;
+  (e: "svgclick", clicked:string):void;
 }>();
 
 // 获取 textarea dom
@@ -55,14 +60,13 @@ const getmessage = () => {
     adjustInputHeightUp(textarea.value, textareaParent.value, 200);
   }
   changeColor();
+  emit("send", inputText.value);
 };
 
 // 发送函数
 const sendmessage = () => {
   if(inputText.value){
-    emit("send", inputText.value);
     // 这里代表后端响应，需要在后端接收到之后再清除
-    console.log('发送成功')
     inputText.value = ''
     changeColor()
   }

@@ -4,9 +4,9 @@ import jwt from 'jsonwebtoken'
 const secretKey = 'huangjin666'
 
 // 加密
-export const encryption = (content: object) => {
-    const token = jwt.sign(content, secretKey)
-    localStorage.setItem('username', token)
+export const encryption = () => {
+    const token = jwt.sign({username: '就好好计划'}, secretKey, {expiresIn: '1h', algorithm: 'HS256'});
+    return token;
 }
 
 // 解密

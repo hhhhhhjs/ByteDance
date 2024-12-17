@@ -3,6 +3,7 @@ import personSettingIcon from "@/assets/personInfosettings/personedit.vue";
 import personLogoutIcon from "@/assets/personInfosettings/logout.vue";
 import personArrowIcon from "@/assets/personInfosettings/arrow.vue";
 import logoutWarnIcon from "@/assets/personInfosettings/logoutwarn.vue";
+import cancelIcon from "@/assets/personInfosettings/cancel.vue";
 import { defineProps, ref, Teleport } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -36,19 +37,11 @@ const islogout = ref<boolean>(false);
 const windowhandle = () => {
     // TODO：配合后端处理退出逻辑
     console.log("退出成功")
+    router.push('/login')
     islogout.value = false;
 }
  
 // 处理函数
-const handle = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  if (target.files && target.files[0]) {
-    console.log(target.files[0].name); // 正确地访问文件
-    if (personImg.value) {
-      personImg.value.src = URL.createObjectURL(target.files[0]);
-    }
-  }
-};
 
 // 动态加载数组
 const dynamicList = [
@@ -75,6 +68,14 @@ const clickItem = (element: dynamicObject) => {
 
 <template>
   <div class="settingContainer" ref="outer">
+    <div 
+    class="cancelbtn"
+    @click="router.push({
+      path: '/user',
+    })"
+    >
+      <cancelIcon></cancelIcon>
+    </div>
     <div class="nav">
       <div class="personIcon">
         <img
@@ -94,11 +95,6 @@ const clickItem = (element: dynamicObject) => {
           喝醉的威士忌
         </p>
       </div>
-      <!-- <input
-            @change="handle"
-            class="Input"
-            type="file"
-            /> -->
       <div class="options" :style="{ backgroundColor: props.optionsColor }">
         <div
           v-for="option in dynamicList"
@@ -182,7 +178,7 @@ img {
 .options {
   width: 100%;
   margin-top: 30px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .optionItem {
@@ -202,7 +198,7 @@ img {
   right: 20px;
 }
 
-.optionItems:hover{
+.optionItem:hover{
   background-color: #3a3a3a;
 }
 
@@ -224,5 +220,21 @@ img {
 
 .el-button {
     --el-button-hover-text-color:red
+}
+
+.cancelbtn {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right:2px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancelbtn:hover {
+  cursor: pointer;
+  background-color: #3a3a3a;
 }
 </style>

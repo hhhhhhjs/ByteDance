@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, defineProps } from "vue";
+import { useRouter } from "vue-router";
 import sideSvg from "@/assets/sideNav/sideicon.vue";
 import editSvg from "@/assets/sideNav/edit.vue";
 import Conversionlist from "@/components/user/side/conversionList.vue";
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const router = useRouter();
 
 // 主题色控制
 const isdark = ref<boolean>(true);
@@ -43,6 +45,12 @@ const changeSide = () => {
   }
 };
 
+// 新建对话
+const newChat = () => {
+  router.push({
+    path: "/user",
+  });
+}
 </script>
 
 <template>
@@ -65,7 +73,9 @@ const changeSide = () => {
           </template>
         </el-popover>
       </div>
-      <div class="editbottom">
+      <div 
+      class="editbottom"
+      @click="newChat">
         <el-popover
           placement="right"
           trigger="hover"
@@ -74,8 +84,12 @@ const changeSide = () => {
           :effect="props.popperStyle"
         >
           <template #reference>
-            <div class="icon-background">
-              <editSvg :fill="props.iconColor" />
+            <div 
+            class="icon-background"
+            >
+              <editSvg 
+              :fill="props.iconColor"
+              />
             </div>
           </template>
         </el-popover>

@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import backIcon from "@/assets/personInfosettings/backIcon.vue";
 import circleIcon from "@/assets/personInfosettings/circle.vue";
-import { defineProps, ref, onMounted, nextTick } from "vue";
+import { defineProps, ref, reactive, onMounted, nextTick, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useUserStore } from '@/store/store'
-import { antiShake } from "@/api/login/login";
+
 
 interface Props {
   textColor: string;
 }
+
+
+const router = useRouter();
 
 // 获取头像 dom
 const personImg = ref<HTMLImageElement | null>(null);
@@ -15,11 +19,17 @@ const personImg = ref<HTMLImageElement | null>(null);
 // 昵称 input dom
 const nameInput = ref<HTMLInputElement | null>(null);
 
+// 玩完成 button dom
+const sendButton = ref<HTMLButtonElement | null>(null);
+
 // 存储修改后的昵称
 const newName = ref<string>('');
 
 // 存储 Kunkun 号
-const kunId = ref<string>();
+const kunId = ref<string>('');
+
+// 控制点击完成后 button 旋转样式
+const isRotate = ref(false);
 
 // 上传头像
 const uploadimg = () => {
@@ -45,22 +55,32 @@ const props = defineProps<Props>();
 const userStore = useUserStore();
 onMounted(() => {
   newName.value = userStore.getName
+  kunId.value = userStore.getkunkunId
 })
 
 
 // 提交处理函数
 const sendSucess = () => {
+  // TODO：向后端发送请求
+  isRotate.value = true;
   userStore.setUsername(newName.value)
-  console.log(userStore.getName)
+  userStore.setUserId(kunId.value)
+  setTimeout(() => {
+    isRotate.value = false;
+  }, 3000);
 };
 
-// 防抖调用
-const antiSendSuccess = antiShake(sendSucess, 1000);
+onMounted(() => {
+ 
+});
 </script>
 <template>
   <div class="profilecontainer">
     <div class="personInfo">
-      <div class="back">
+      <div 
+      class="back"
+      @click="router.back()"
+      >
         <backIcon></backIcon>
       </div>
       <div
@@ -124,10 +144,14 @@ const antiSendSuccess = antiShake(sendSucess, 1000);
           <span style="color: #badfd4;">KunKun只能为4-16位的字母，数字和下划线的组合</span>
      </div>
      <el-button
+     ref="sendButton"
      type="primary"
-     style="margin-top: 40px;"
-     @click="antiSendSuccess"
-     >完成</el-button>
+     :style="{marginTop: '40px'}"
+     :loading="isRotate"
+     @click="sendSucess"
+     >
+     完成
+    </el-button>
     </div>
   </div>
 </template>
@@ -227,4 +251,5 @@ span[role="img"] {
 .el-input {
   --el-input-border-radius: 7px;
 }
+
 </style>

@@ -80,6 +80,7 @@ p {
   position: absolute;
   top: 120%;
   right: 0;
+  z-index: 200;
 }
 
 img {

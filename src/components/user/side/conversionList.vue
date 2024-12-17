@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, defineProps } from "vue";
+import { useRouter } from "vue-router";
 import gptIcon from "@/assets/sideNav/gpt.vue";
 import editSvg from "@/assets/sideNav/edit.vue";
 import optionSvg from "@/assets/sideNav/option.vue";
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const router = useRouter();
 
 // 昨天，近七天，近三十天，超过三十天按照月份归类
 
@@ -79,11 +81,22 @@ const enteroptions = (value: childObj): void => {
 const moveoptions = (): void => {
   dialogId.value = null;
 };
+
+
+// 新建对话
+const newchat = () => {
+  router.push({
+    path:'/user'
+  })
+}
 </script>
 
 <template>
   <div class="container" :style="{ color: props.textColor }">
-    <div class="icon">
+    <div 
+    class="icon"
+    @click="newchat"
+    >
       <gptIcon :fill="props.fill"></gptIcon>
       <span style="margin-left: 10px">KunKun-Gpt</span>
       <el-popover
@@ -134,6 +147,7 @@ const moveoptions = (): void => {
   border-radius: 4px;
   transition: background-color 0.3s;
   outline: none;
+  cursor: pointer;
 }
 
 .icon:hover {

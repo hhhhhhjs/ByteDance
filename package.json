@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coze/api": "^1.0.14",
+    "axios": "^1.7.9",
     "element-plus": "^2.8.7",
     "jsonwebtoken": "^9.0.2",
     "mitt": "^3.0.1",

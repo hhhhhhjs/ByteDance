@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import settingSvg from '@/assets/personInfo/personSetting.vue'
 import logout from '@/assets/personInfo/logout.vue'
-import { defineProps, onMounted} from 'vue';
+import { defineProps, onMounted, ref} from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/store';
 
@@ -32,10 +32,20 @@ const options: optionObj[] = [
         icon: logout,
         describe: '退出登录',
         handle: () => {
-            console.log('退出登录')
+            islogout.value = true;
         }
     }
 ]
+
+// 退出登录弹窗
+const islogout = ref<boolean>(false);
+
+const windowhandle = () => {
+    router.push({
+        path: '/login'
+    })
+}
+
 
 // 创建 store
 const userStore = useUserStore();
@@ -61,6 +71,37 @@ const userStore = useUserStore();
             ></component>
             <p style="margin-left:10px">{{ option.describe }}</p>
         </div>
+        <Teleport to="body">
+      <el-dialog 
+      v-model="islogout" 
+      width="500"
+      :show-close="false"
+      >
+        <div class="popwindow">
+          <logoutWarnIcon></logoutWarnIcon>
+          <h2 style="margin-left:20px">确认退出登录？</h2>
+        </div>
+        <p style="margin: 0 auto; width:350px">退出登录不会丢失任何数据，你仍可以登录此账号。</p>
+        <template #footer>
+          <div class="popwindowFooter">
+            <el-button 
+            class="popwindowFooterCancel"
+            color="#f4f4f5"
+            @click="islogout = false"
+            >
+                <span>取消</span>
+            </el-button>
+            <el-button
+            color="#fb4520"
+            class="popwindowFooterCancel"
+            @click="windowhandle"
+            >
+                <span>退出登录</span>
+            </el-button>
+          </div>
+        </template>
+      </el-dialog>
+    </Teleport>
     </div>
 </template>
 

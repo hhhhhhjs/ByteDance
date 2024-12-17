@@ -18,6 +18,7 @@ declare module 'vue' {
     ElIn: typeof import('element-plus/es')['ElIn']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElScrollba: typeof import('element-plus/es')['ElScrollba']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     HighLight: typeof import('./src/components/user/side/highLight.vue')['default']
     Homeleft: typeof import('./src/components/Homecomp/Homeleft.vue')['default']
