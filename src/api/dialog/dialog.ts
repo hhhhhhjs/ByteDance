@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CozeAPI, ChatEventType, RoleType } from '@coze/api';
 
 export const callCozeApi = async (question: string) => {
-    const accessToken = 'pat_2C2EInYnWnS8hfAphKZxdkaQc5NFjG1XDNdinr6chheF7EickYTI7D6UNHwjiN8h'
+    const accessToken = 'pat_9mvPrtt78LrnQC2Yo0I8MusvtC4xR6b0twunlSSwdcw4RKzyzouGf62Hmi59sqP3'
     const botId = '7448225485772898358'
     const userId = '喝醉的威士忌'
     const Url = 'https://api.coze.cn/v3/chat'
